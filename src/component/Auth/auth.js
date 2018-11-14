@@ -6,7 +6,7 @@ import $ from 'jquery';
 import googleImage from './googleImage.png';
 
 const loginButton = () => {
-  const domString = `<button id="googleAuth" class="btn btn-secondary">
+  const domString = `<button id="googleAuth" class="btn btn-light">
       <img src="${googleImage}">
     </button>`;
   $('#auth').html(domString);
