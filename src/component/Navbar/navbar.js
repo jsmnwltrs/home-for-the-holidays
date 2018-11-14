@@ -8,16 +8,27 @@ const navbarEvents = () => {
   $('.nav-link').on('click', (e) => {
     if (e.target.id === 'navbar-button-logout') {
       firebase.auth().signOut().then(() => {
-        console.log('you logged out');
+        $('#auth').show();
+        $('#friends').hide();
+        $('#holidays').hide();
       }).catch((error) => {
         console.error('you are still logged in', error);
       });
-    } else {
-      console.log(e.target.id);
+    } else if (e.target.id === 'navbar-button-auth') {
+      $('#auth').show();
+      $('#friends').hide();
+      $('#holidays').hide();
+    } else if (e.target.id === 'navbar-button-holidays') {
+      $('#holidays').show();
+      $('#friends').hide();
+      $('#auth').hide();
+    } else if (e.target.id === 'navbar-button-friends') {
+      $('#friends').show();
+      $('#auth').hide();
+      $('#holidays').hide();
     }
   });
 };
-
 
 const createNavbar = () => {
   const domString = `<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
