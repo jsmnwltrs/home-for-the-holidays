@@ -3,7 +3,7 @@
   "name": "Thanksgiving",
   "Date": "11/22/2018",
   "imageUrl": "http://www.genesishealth.com/app/files/public/20547/ThanksgivingDinner_Nov2016.jpg",
-  "location": "",
+  "location": "at my barn",
   "startTime": "5pm",
   "uid": "5HGFI50OQCdKgLoOPhDhd03qk123"
 },
@@ -11,7 +11,7 @@
   "name": "Christmas",
   "Date": "12/25/2018",
   "imageUrl": "http://www.witf.org/news/600x340-christmas-ornament.png",
-  "location": "",
+  "location": "in the chicken coop",
   "startTime": "8am",
   "uid": "5HGFI50OQCdKgLoOPhDhd03qk123"
 },
@@ -19,7 +19,7 @@
   "name": "New Years",
   "Date": "12/31/2018",
   "imageUrl": "https://www.newcastleinn.com/wp-content/uploads/sites/61/2018/10/New-Years-Eve.jpg",
-  "location": "",
+  "location": "at the lake",
   "startTime": "9pm",
   "uid": "12345"
 }
