@@ -1,6 +1,4 @@
 import $ from 'jquery';
-import axios from 'axios';
-import apiKeys from '../../../db/apiKeys.json';
 import authHelpers from '../../helpers/authHelpers';
 import friendsData from '../../helpers/data/friendsData';
 
@@ -60,7 +58,7 @@ const friendsPage = () => {
 const deleteFriend = (e) => {
   // firebase id
   const idToDelete = e.target.dataset.deleteId;
-  axios.delete(`${apiKeys.firebaseKeys.databaseURL}/friends/${idToDelete}.json`)
+  friendsData.deleteFriend(idToDelete)
     .then(() => {
       friendsPage();
       $('#single-container').html('');
