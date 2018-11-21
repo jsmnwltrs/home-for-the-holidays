@@ -2,6 +2,7 @@ import $ from 'jquery';
 import axios from 'axios';
 import apiKeys from '../../../db/apiKeys.json';
 import authHelpers from '../../helpers/authHelpers';
+import friendsData from '../../helpers/data/friendsData';
 
 const printSingleFriend = (friend) => {
   const friendString = `
@@ -19,10 +20,8 @@ const printSingleFriend = (friend) => {
 const getSingleFriend = (e) => {
   // firebase id
   const friendId = e.target.dataset.dropdownId;
-  axios.get(`${apiKeys.firebaseKeys.databaseURL}/friends/${friendId}.json`)
-    .then((result) => {
-      const singleFriend = result.data;
-      singleFriend.id = friendId;
+  friendsData.getSingleFriend(friendId)
+    .then((singleFriend) => {
       printSingleFriend(singleFriend);
     })
     .catch((error) => {
@@ -49,16 +48,8 @@ const buildDropdown = (friendsArray) => {
 
 const friendsPage = () => {
   const uid = authHelpers.getCurrentUid();
-  axios.get(`${apiKeys.firebaseKeys.databaseURL}/friends.json?orderBy="uid"&equalTo="${uid}"`)
-    .then((results) => {
-      const friendsObject = results.data;
-      const friendsArray = [];
-      if (friendsObject !== null) {
-        Object.keys(friendsObject).forEach((friendId) => {
-          friendsObject[friendId].id = friendId;
-          friendsArray.push(friendsObject[friendId]);
-        });
-      }
+  friendsData.getAllFriends(uid)
+    .then((friendsArray) => {
       buildDropdown(friendsArray);
     })
     .catch((error) => {

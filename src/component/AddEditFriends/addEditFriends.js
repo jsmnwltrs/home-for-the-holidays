@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import authHelpers from '../../helpers/authHelpers'
+import authHelpers from '../../helpers/authHelpers';
 
 const formBuilder = () => {
   const form = `
@@ -39,6 +39,9 @@ const getFriendFromForm = () => {
     email: $('#form-friend-email').val(),
     relationship: $('#form-friend-relationship').val(),
     isAvoiding: false,
-    uid: authHelpers.getCurrentUid()
+    uid: authHelpers.getCurrentUid(),
   };
+  console.log(friend);
 };
+
+export default { formBuilder, getFriendFromForm };
