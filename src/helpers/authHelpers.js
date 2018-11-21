@@ -8,6 +8,7 @@ const checkLoginStatus = (initializeFriendsPage) => {
       $('#friends').hide();
       $('#holidays').show();
       $('#auth').hide();
+      $('#add-edit-friend').html('').hide();
       $('#navbar-button-auth').hide();
       $('#navbar-button-friends').show();
       $('#navbar-button-holidays').show();
@@ -17,6 +18,7 @@ const checkLoginStatus = (initializeFriendsPage) => {
       $('#friends').hide();
       $('#holidays').hide();
       $('#auth').show();
+      $('#add-edit-friend').html('').hide();
       $('#navbar-button-auth').show();
       $('#navbar-button-friends').hide();
       $('#navbar-button-holidays').hide();
