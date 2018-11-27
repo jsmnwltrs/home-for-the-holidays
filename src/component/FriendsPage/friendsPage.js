@@ -21,11 +21,18 @@ const printSingleFriend = (friend, holidays) => {
     <p>${friend.phoneNumber}</p>
     <p>${friend.address}</p>
     <p>${friend.email}</p>
+    <div class="form-check form-check-inline">
+      <label class="form-check-label" for="inlineCheckbox1">Am I avoiding?</label>
+      <input class="form-check-input is-avoiding-checkbox" type="checkbox" id="${friend.id}">
+    </div>
+    <div class="holiday-container">${holidayStringBuilder(holidays)}</div>
     <button class="btn btn-danger delete-btn" data-delete-id=${friend.id}>X</button>
     <button class="btn btn-success edit-btn" data-edit-id=${friend.id}>Edit</button>
-    <div class="holiday-container">${holidayStringBuilder(holidays)}</div>
   </div>`;
   $('#single-container').html(friendString);
+  if (friend.isAvoiding) {
+    $('.is-avoiding-checkbox').attr('checked', true);
+  }
 };
 
 const getSingleFriend = (e) => {
@@ -36,7 +43,6 @@ const getSingleFriend = (e) => {
     .then((singleFriend) => {
       holidayFriendsData.getHolidayIdsForFriend(friendId)
         .then((holidayIds) => {
-          console.log('holidayIds', holidayIds);
           holidaysData.getHolidaysByArrayOfIds(uid, holidayIds)
             .then((holidays) => {
               printSingleFriend(singleFriend, holidays);
@@ -89,9 +95,22 @@ const deleteFriend = (e) => {
     });
 };
 
+const updateIsAvoiding = (e) => {
+  const friendId = e.target.id;
+  const isAvoiding = e.target.checked;
+  friendsData.updateIsAvoiding(friendId, isAvoiding)
+    .then(() => {
+
+    })
+    .catch((error) => {
+      console.error('updateIsAvoiding', error);
+    });
+};
+
 const bindEvents = () => {
   $('body').on('click', '.get-single', getSingleFriend);
   $('body').on('click', '.delete-btn', deleteFriend);
+  $('body').on('change', '.is-avoiding-checkbox', updateIsAvoiding);
 };
 
 const initializeFriendsPage = () => {
